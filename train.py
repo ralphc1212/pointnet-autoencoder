@@ -117,7 +117,7 @@ def train():
             if OPTIMIZER == 'momentum':
                 optimizer = tf.train.MomentumOptimizer(learning_rate, momentum=MOMENTUM)
             elif OPTIMIZER == 'adam':
-                optimizer = tf.train.AdamOptimizer(learning_rate)
+                optimizer = tf.compat.v1.train.AdamOptimizer(learning_rate)
             train_op = optimizer.minimize(loss, global_step=batch)
             
             # Add ops to save and restore all the variables.

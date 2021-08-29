@@ -17,8 +17,8 @@ sys.path.append(os.path.join(ROOT_DIR, 'tf_ops/nn_distance'))
 import tf_nndistance
 
 def placeholder_inputs(batch_size, num_point):
-    pointclouds_pl = tf.placeholder(tf.float32, shape=(batch_size, num_point, 3))
-    labels_pl = tf.placeholder(tf.float32, shape=(batch_size, num_point, 3))
+    pointclouds_pl = tf.compat.v1.placeholder(tf.float32, shape=(batch_size, num_point, 3))
+    labels_pl = tf.compat.v1.placeholder(tf.float32, shape=(batch_size, num_point, 3))
     return pointclouds_pl, labels_pl
 
 

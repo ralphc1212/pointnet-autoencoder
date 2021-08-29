@@ -190,7 +190,7 @@ def train_one_epoch(sess, ops, train_writer):
 
     loss_sum = 0
     pcloss_sum = 0
-    for batch_idx in range(num_batches):
+    for batch_idx in range(int(num_batches)):
         start_idx = batch_idx * BATCH_SIZE
         end_idx = (batch_idx+1) * BATCH_SIZE
         batch_data, batch_label = get_batch(TRAIN_DATASET, train_idxs, start_idx, end_idx)

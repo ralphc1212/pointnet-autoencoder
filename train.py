@@ -128,7 +128,7 @@ def train():
         config.gpu_options.allow_growth = True
         config.allow_soft_placement = True
         config.log_device_placement = False
-        sess = tf.Session(config=config)
+        sess = tf.compat.v1.Session(config=config)
 
         # Add summary writers
         merged = tf.summary.merge_all()

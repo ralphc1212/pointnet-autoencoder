@@ -72,7 +72,7 @@ def log_string(out_str):
     print(out_str)
 
 def get_learning_rate(batch):
-    learning_rate = tf.train.exponential_decay(
+    learning_rate = tf.compat.v1.train.exponential_decay(
                         BASE_LEARNING_RATE,  # Base learning rate.
                         batch * BATCH_SIZE,  # Current index into the dataset.
                         DECAY_STEP,          # Decay step.

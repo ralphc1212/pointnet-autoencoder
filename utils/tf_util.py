@@ -345,7 +345,7 @@ def fully_connected(inputs,
   Returns:
     Variable tensor of size B x num_outputs.
   """
-  with tf.variable_scope(scope) as sc:
+  with tf.compat.v1.variable_scope(scope) as sc:
     num_input_units = inputs.get_shape()[-1].value
     weights = _variable_with_weight_decay('weights',
                                           shape=[num_input_units, num_outputs],

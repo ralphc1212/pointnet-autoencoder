@@ -82,7 +82,7 @@ def get_learning_rate(batch):
     return learning_rate        
 
 def get_bn_decay(batch):
-    bn_momentum = tf.train.exponential_decay(
+    bn_momentum = tf.compat.v1.train.exponential_decay(
                       BN_INIT_DECAY,
                       batch*BATCH_SIZE,
                       BN_DECAY_DECAY_STEP,

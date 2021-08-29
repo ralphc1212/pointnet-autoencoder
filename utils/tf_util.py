@@ -18,7 +18,7 @@ def _variable_on_cpu(name, shape, initializer, use_fp16=False):
   """
   with tf.device("/cpu:0"):
     dtype = tf.float16 if use_fp16 else tf.float32
-    var = tf.get_variable(name, shape, initializer=initializer, dtype=dtype)
+    var = tf.compat.v1.get_variable(name, shape, initializer=initializer, dtype=dtype)
   return var
 
 def _variable_with_weight_decay(name, shape, stddev, wd, use_xavier=True):
@@ -152,13 +152,13 @@ def conv2d(inputs,
   Returns:
     Variable tensor
   """
-  with tf.variable_scope(scope) as sc:
+  with tf.compat.v1.variable_scope(scope) as sc:
       kernel_h, kernel_w = kernel_size
       assert(data_format=='NHWC' or data_format=='NCHW')
       if data_format == 'NHWC':
-        num_in_channels = inputs.get_shape()[-1].value
+        num_in_channels = inputs.get_shape()[-1]
       elif data_format=='NCHW':
-        num_in_channels = inputs.get_shape()[1].value
+        num_in_channels = inputs.get_shape()[1]
       kernel_shape = [kernel_h, kernel_w,
                       num_in_channels, num_output_channels]
       kernel = _variable_with_weight_decay('weights',
@@ -172,7 +172,7 @@ def conv2d(inputs,
                              padding=padding,
                              data_format=data_format)
       biases = _variable_on_cpu('biases', [num_output_channels],
-                                tf.constant_initializer(0.0))
+                                tf.compat.v1.constant_initializer(0.0))
       outputs = tf.nn.bias_add(outputs, biases, data_format=data_format)
 
       if bn:
